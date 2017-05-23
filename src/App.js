@@ -52,21 +52,38 @@ class Post extends Component {
             </div>
             <div className="ten columns">
               <Link name={this.props.name} link={this.props.link}></Link>
-              <Comments></Comments>
+              <CommentsPreview></CommentsPreview>
             </div>
           </div>
       );
     }
 }
 
-class Comments extends Component {
+class CommentsPreview extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      commentCount: this.props.comments
+    };
+  }
+
   render() {
-    return (
-      <div>
-        Comments component will be rendered here:
+    if (this.state.commentCount > 0){
+      return (
+      <div className="comments">
+        <a className="comment-link" href="#">{this.state.commentCount} comments</a>    
       </div>
 
     );
+  }
+  return (
+    <div className="comments">
+      <a className="comment-link" href="#">There are no comments, why don't you add yours?</a>
+    </div>
+  )
+
+    
   }
 }
 
@@ -107,34 +124,34 @@ class Doot extends Component {
   }
 
   adjustBoats(status) {
-    if (this.state.doot === "no-doot") {
-        if (status === "up") {
-          return this.state.currentBoats + 1;
+    switch (this.state.doot) {
+      case "no-doot":
+        switch (status) {
+          case "up":
+            return this.state.currentBoats + 1;
+          
+          case "down":
+            return this.state.currentBoats - 1;
+          }
+          break;
+      case "up":
+        switch(status) {
+          case "up":
+            return this.state.currentBoats - 1;
+          case "down":
+            return this.state.currentBoats - 2;
         }
+        break;
+        
+      case "down":
+        switch(status) {
+          case "up":
+            return this.state.currentBoats + 2;
 
-      else if (status === "down") {
-        return this.state.currentBoats - 1
-      }
-    }
-
-    else if (this.state.doot === "up") {
-      if (status === "down") {
-        return this.state.currentBoats - 2;
-      }
-
-      else if (status === "up") {
-        return this.state.currentBoats - 1;
-      }
-    }
-
-    else if (this.state.doot === "down") {
-      if (status === "up") {
-        return this.state.currentBoats + 2;
-      }
-
-      else if (this.state.doot === "down" && status === "down") {
-        return this.state.currentBoats + 1;
-      }
+          case "down":
+            return this.state.currentBoats + 1;
+        }
+        break;
     }
 
     return this.state.currentBoats;
