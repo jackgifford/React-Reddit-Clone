@@ -35,7 +35,7 @@ class App extends Component {
     return (
       <div className="entry-point container">
           <div className="title">
-            <h3 style={styles}>Roddit</h3><h5 style={styles}>Reddit on React</h5>
+            <h3 style={styles}>Roddit</h3>
           </div>
           {list}
       </div>
@@ -52,17 +52,29 @@ class Post extends Component {
             </div>
             <div className="ten columns">
               <Link name={this.props.name} link={this.props.link}></Link>
+              <Comments></Comments>
             </div>
           </div>
       );
     }
 }
 
+class Comments extends Component {
+  render() {
+    return (
+      <div>
+        Comments component will be rendered here:
+      </div>
+
+    );
+  }
+}
+
 class Link extends Component {
   render() {
     return (
       <div className="link">
-        <a href={this.props.link}>{this.props.name}</a>
+        <a className="title-link" href={this.props.link}><h3> {this.props.name} </h3></a>
       </div>
     )
   }

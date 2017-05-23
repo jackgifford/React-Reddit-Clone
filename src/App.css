@@ -26,3 +26,26 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.post {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-radius:  20px;
+  background: #fff;
+  border-radius: 2px;
+  margin: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  padding: 10px;
+  
+}
+
+.doots {
+  text-align: center;
+}
+
+.title-link {
+  color: black;
+  text-decoration: none;
+
+}
